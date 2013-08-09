@@ -19,6 +19,100 @@ describe Sherlock::API do
     expect(content).to eq([problem])
   end
 
+  it "can evaluate problems" do
+    solution = { id:        "ABC",
+                 arguments: [0, 1, 2, 3] }
+    response = { "status"    => "ok",
+                 "outputs"   => ["0x0000000000000000"] * 4 }
+
+    ua.stub(new: ua)
+    ua.should_receive(:post)
+      .with(/\beval\b/)
+      .and_return(double(status: 200, body: response.to_json))
+    result, content = api.eval(solution)
+
+    expect(result).to  eq(:success)
+    expect(content).to eq(response)
+  end
+
+  it "can evaluate programs" do
+    solution = { program:   "(lambda (x) 0)",
+                 arguments: [0, 1, 2, 3] }
+    response = { "status"    => "ok",
+                 "outputs"   => ["0x0000000000000000"] * 4 }
+
+    ua.stub(new: ua)
+    ua.should_receive(:post)
+      .with(/\beval\b/)
+      .and_return(double(status: 200, body: response.to_json))
+    result, content = api.eval(solution)
+
+    expect(result).to  eq(:success)
+    expect(content).to eq(response)
+  end
+
+  it "it converts arguments to 64 bit vectors" do
+    solution = { program:   "(lambda (x) 0)",
+                 arguments: [0, 1, 2, 3] }
+
+    ua.stub(new: ua)
+    request = double.tap do |r|
+      r.should_receive(:body=)
+       .with( { program:   "(lambda (x) 0)",
+                arguments: [ "0x0000000000000000",
+                             "0x0000000000000001",
+                             "0x0000000000000002",
+                             "0x0000000000000003" ] }.to_json )
+    end
+    ua.should_receive(:post)
+      .with(/\beval\b/)
+      .and_yield(request)
+      .and_return(double(status: 200, body: nil))
+    api.eval(solution)
+  end
+
+  it "requires an ID or program for evaluation" do
+    ua.stub(:new)
+    expect do
+      api.eval(arguments: [1])
+    end.to raise_error(RuntimeError)
+  end
+
+  it "requires a valid ID for evaluation" do
+    ua.stub(:new)
+    expect do
+      api.eval(id: " ", arguments: [1])
+    end.to raise_error(RuntimeError)
+  end
+
+  it "requires a valid program for evaluation" do
+    ua.stub(:new)
+    expect do
+      api.eval(program: "(lambda (x) x)" * 1_025, arguments: [1])
+    end.to raise_error(RuntimeError)
+  end
+
+  it "requires some arguments for evaluation" do
+    ua.stub(:new)
+    expect do
+      api.eval(id: "ABC", arguments: [])
+    end.to raise_error(RuntimeError)
+  end
+
+  it "requires 256 or less arguments for evaluation" do
+    ua.stub(:new)
+    expect do
+      api.eval(id: "ABC", arguments: [1] * 257)
+    end.to raise_error(RuntimeError)
+  end
+
+  it "requires valid arguments for evaluation" do
+    ua.stub(:new)
+    expect do
+      api.eval(id: "ABC", arguments: [Sherlock::API::MAX_VECTOR + 1])
+    end.to raise_error(RuntimeError)
+  end
+
   it "can submit guesses" do
     guess    = { "id"      => "ABC",
                  "program" => "(lambda (x) x)" }
