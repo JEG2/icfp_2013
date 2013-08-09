@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require "json"
+
 require_relative "../lib/sherlock"
 
 puts JSON.pretty_generate(Sherlock::API.new.my_problems)
