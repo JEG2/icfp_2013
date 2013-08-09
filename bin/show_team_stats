@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/sherlock"
+
+require "json"
+
+result, stats = Sherlock::API.new.status
+if result == :success
+  puts JSON.pretty_generate(stats)
+else
+  puts result.to_s.tr("_", " ")
+end

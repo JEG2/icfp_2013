@@ -5,7 +5,12 @@ module Sherlock
   class API
     STATUS_CODES = { 200 => :success,
                      400 => :bad_request,
+                     401 => :unauthorized,
                      403 => :authorization_required,
+                     404 => :not_found,
+                     410 => :gone,
+                     412 => :already_solved,
+                     413 => :request_too_big,
                      429 => :try_again_later }
 
     def initialize(user_agent = Faraday)
@@ -19,6 +24,10 @@ module Sherlock
 
     def my_problems
       request(:myproblems)
+    end
+
+    def guess(id, program)
+      request(:guess, id: id, program: program)
     end
 
     def train(size: nil, operators: nil)
@@ -37,10 +46,16 @@ module Sherlock
       request(:train, params)
     end
 
+    def status
+      request(:status)
+    end
+
     private
 
     def request(action, params = { })
-      response = ua.post(path(action), params)
+      response = ua.post(path(action)) do |request|
+        request.body = params.to_json unless params.empty?
+      end
       [result(response.status), content(response.body)]
     end
 

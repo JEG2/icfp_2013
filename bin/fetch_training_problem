@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/sherlock"
+
+require "json"
+require "optparse"
+
+options = { }
+
+ARGV.options do |parser|
+  parser.banner = "Usage:  #{File.basename($PROGRAM_NAME)} [OPTIONS]"
+
+  parser.separator ""
+  parser.separator "Specific Options:"
+
+  parser.on( "-s", "--size N", Integer,
+             "Problem size:  3-30" ) do |size|
+    options[:size] = size
+  end
+
+  parser.on( "-o", "--operators OP", String,
+             "Operators: tfold or fold" ) do |op|
+    options[:operators] = op
+  end
+
+  parser.separator "Common Options:"
+
+  parser.on( "-h", "--help",
+             "Show this message." ) do
+    puts parser
+    exit
+  end
+
+  begin
+    parser.parse!
+  rescue OptionParser::ParseError
+    puts parser
+    exit
+  end
+end
+
+result, problem = Sherlock::API.new.train(options)
+if result == :success
+  puts JSON.pretty_generate(problem)
+else
+  puts result.to_s.tr("_", " ")
+end
