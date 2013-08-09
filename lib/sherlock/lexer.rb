@@ -23,18 +23,43 @@ module Sherlock
     private     :program
 
     def next
-      open_paren ||
-      lambda
+      discard_whitespace
+      paren ||
+      keyword ||
+      constant ||
+      unary ||
+      binary ||
+      variable
     end
 
     private
 
-    def open_paren
-      token(/\(/, :paren)
+    def discard_whitespace
+      program.scan(/\s+/)
     end
 
-    def lambda
-      token(/\blambda\b/, :keyword)
+    def paren
+      token(/(?:\(|\))/, :paren)
+    end
+
+    def keyword
+      token(/\b(?:lambda|if0|fold)\b/, :keyword)
+    end
+    
+    def constant
+      token(/\b(?:0|1)\b/, :constant)
+    end
+
+    def unary
+      token(/\b(?:not|shl1|shr1|shr4|shr16)\b/, :unary)
+    end
+
+    def binary
+      token(/\b(?:and|or|xor|plus)\b/, :binary)
+    end
+
+    def variable
+      token(/\b[a-z][a-z_0-9]*\b/, :variable)
     end
 
     def token(regex, type)
