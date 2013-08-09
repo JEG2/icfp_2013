@@ -3,6 +3,11 @@ require "json"
 
 module Sherlock
   class API
+    STATUS_CODES = { 200 => :success,
+                     400 => :bad_request,
+                     403 => :authorization_required,
+                     429 => :try_again_later }
+
     def initialize(user_agent = Faraday)
       @token = File.read( File.join(File.dirname(__FILE__),
                           *%w[.. .. data token.txt]) ).strip
@@ -16,10 +21,26 @@ module Sherlock
       request(:myproblems)
     end
 
+    def train(size: nil, operators: nil)
+      fail "Invalid size" unless size.nil? ||
+                                 (size.is_a?(Integer) && size.between?(3, 30))
+
+      allowed_operater = operators.to_s.delete("^a-z")
+      fail "Invalid operators" unless allowed_operater.empty? ||
+                                      %w[tfold fold].include?(allowed_operater)
+
+      params             = { }
+      params[:size]      = size \
+        unless size.nil?
+      params[:operators] = %Q{["#{allowed_operater}"]} \
+        unless allowed_operater.empty?
+      request(:train, params)
+    end
+
     private
 
-    def request(action)
-      response = ua.post(path(action))
+    def request(action, params = { })
+      response = ua.post(path(action), params)
       [result(response.status), content(response.body)]
     end
 
@@ -28,14 +49,12 @@ module Sherlock
     end
 
     def result(code)
-      case code
-      when 200 then :success
-      when 403 then :authorization_required
-      when 429 then :try_again_later
-      end
+      STATUS_CODES.fetch(code)
     end
 
     def content(body)
+      return body unless body.is_a?(String)
+
       JSON.parse(body)
     rescue JSON::ParserError
       nil
