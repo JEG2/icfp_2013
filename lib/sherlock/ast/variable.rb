@@ -6,6 +6,10 @@ module Sherlock
       end
 
       attr_reader :name
+      
+      def size
+        1
+      end
     end
   end
 end

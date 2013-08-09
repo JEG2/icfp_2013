@@ -1,6 +1,6 @@
 module Sherlock
   module AST
-    class NotOperator
+    class ShiftRightFour
       def initialize(expression)
         @expression = expression
       end
