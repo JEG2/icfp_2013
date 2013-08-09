@@ -16,20 +16,32 @@ module Sherlock
     end
 
     def initialize(program)
-      @program = StringScanner.new(program)
+      @program    = StringScanner.new(program)
+      @next_token = nil
     end
 
     attr_reader :program
     private     :program
 
     def next
+      if @next_token
+        next_token  = @next_token
+        @next_token = nil
+        return next_token
+      end
+
       discard_whitespace
-      paren ||
-      keyword ||
+
+      paren    ||
+      keyword  ||
       constant ||
-      unary ||
-      binary ||
+      unary    ||
+      binary   ||
       variable
+    end
+
+    def peek
+      @next_token ||= self.next
     end
 
     private
@@ -45,7 +57,7 @@ module Sherlock
     def keyword
       token(/\b(?:lambda|if0|fold)\b/, :keyword)
     end
-    
+
     def constant
       token(/\b(?:0|1)\b/, :constant)
     end

@@ -44,22 +44,22 @@ describe Sherlock::Lexer do
     lexer = Sherlock::Lexer.new("not")
     expect(lexer.next).to eq(token(:unary, "not"))
   end
-  
+
   it "finds shl1" do
     lexer = Sherlock::Lexer.new("shl1")
     expect(lexer.next).to eq(token(:unary, "shl1"))
   end
-  
+
   it "finds shr1" do
     lexer = Sherlock::Lexer.new("shr1")
     expect(lexer.next).to eq(token(:unary, "shr1"))
   end
-  
+
   it "finds shr4" do
     lexer = Sherlock::Lexer.new("shr4")
     expect(lexer.next).to eq(token(:unary, "shr4"))
   end
-  
+
   it "finds shr16" do
     lexer = Sherlock::Lexer.new("shr16")
     expect(lexer.next).to eq(token(:unary, "shr16"))
@@ -69,17 +69,17 @@ describe Sherlock::Lexer do
     lexer = Sherlock::Lexer.new("and")
     expect(lexer.next).to eq(token(:binary, "and"))
   end
-  
+
   it "finds or" do
     lexer = Sherlock::Lexer.new("or")
     expect(lexer.next).to eq(token(:binary, "or"))
   end
-  
+
   it "finds xor" do
     lexer = Sherlock::Lexer.new("xor")
     expect(lexer.next).to eq(token(:binary, "xor"))
   end
-  
+
   it "finds plus" do
     lexer = Sherlock::Lexer.new("plus")
     expect(lexer.next).to eq(token(:binary, "plus"))
@@ -96,41 +96,51 @@ describe Sherlock::Lexer do
     expect(lexer.next).to eq(token(:binary, "and"))
   end
 
+  it "allows you to peek ahead at tokens" do
+    lexer = Sherlock::Lexer.new("(not x)")
+    paren = lexer.peek
+    expect(lexer.next).to eq(paren)
+  end
+
   it "lexes a program" do
-    lexer = Sherlock::Lexer.new("(lambda (x_10327) (fold x_10327 0 (lambda (x_10327 x_10328) (xor (plus (shl1 x_10327) x_10328) 1))))")
-    [ token(:paren, "("),
-      token(:keyword, "lambda"),
-      token(:paren, "("),
+    lexer = Sherlock::Lexer.new(<<-END_SEXP)
+    (lambda (x_10327)
+      (fold x_10327 0 (lambda (x_10327 x_10328)
+                        (xor (plus (shl1 x_10327) x_10328) 1))))
+    END_SEXP
+    [ token(:paren,    "("),
+      token(:keyword,  "lambda"),
+      token(:paren,    "("),
       token(:variable, "x_10327"),
-      token(:paren, ")"),
-      token(:paren, "("),
-      token(:keyword, "fold"),
+      token(:paren,    ")"),
+      token(:paren,    "("),
+      token(:keyword,  "fold"),
       token(:variable, "x_10327"),
       token(:constant, "0"),
-      token(:paren, "("),
-      token(:keyword, "lambda"),
-      token(:paren, "("),
+      token(:paren,    "("),
+      token(:keyword,  "lambda"),
+      token(:paren,    "("),
       token(:variable, "x_10327"),
       token(:variable, "x_10328"),
-      token(:paren, ")"),
-      token(:paren, "("),
-      token(:binary, "xor"),
-      token(:paren, "("),
-      token(:binary, "plus"),
-      token(:paren, "("),
-      token(:unary, "shl1"),
+      token(:paren,    ")"),
+      token(:paren,    "("),
+      token(:binary,   "xor"),
+      token(:paren,    "("),
+      token(:binary,   "plus"),
+      token(:paren,    "("),
+      token(:unary,    "shl1"),
       token(:variable, "x_10327"),
-      token(:paren, ")"),
+      token(:paren,    ")"),
       token(:variable, "x_10328"),
-      token(:paren, ")"),
+      token(:paren,    ")"),
       token(:constant, "1"),
-      token(:paren, ")"),
-      token(:paren, ")"),
-      token(:paren, ")"),
-      token(:paren, ")"),
+      token(:paren,    ")"),
+      token(:paren,    ")"),
+      token(:paren,    ")"),
+      token(:paren,    ")"),
       nil
     ].each do |token|
-      expect(lexer.next).to eq token
+      expect(lexer.next).to eq(token)
     end
-  end  
+  end
 end
