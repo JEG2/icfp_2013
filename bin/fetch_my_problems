@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/sherlock/api"
+require_relative "../lib/sherlock"
 
 puts JSON.pretty_generate(Sherlock::API.new.my_problems)
