@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/sherlock"
+
+require "json"
+require "optparse"
+
+options = { }
+
+ARGV.options do |parser|
+  parser.banner = "Usage:  #{File.basename($PROGRAM_NAME)} [OPTIONS] ARGUMENTS"
+
+  parser.separator ""
+  parser.separator "Specific Options:"
+
+  parser.on( "-i", "--id ID", String,
+             "The problem ID" ) do |id|
+    options[:id] = id
+  end
+
+  parser.on( "-p", "--program SEXP", String,
+             "\\BV syntax" ) do |program|
+    options[:program] = program
+  end
+
+  parser.separator "Common Options:"
+
+  parser.on( "-h", "--help",
+             "Show this message." ) do
+    puts parser
+    exit
+  end
+
+  begin
+    parser.parse!
+  rescue OptionParser::ParseError
+    puts parser
+    exit
+  end
+end
+
+result, problem = Sherlock::API.new.eval(
+  options.merge(arguments: ARGV.map(&:to_i))
+)
+if result == :success
+  puts JSON.pretty_generate(problem)
+else
+  puts result.to_s.tr("_", " ")
+end
