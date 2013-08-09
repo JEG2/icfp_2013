@@ -143,3 +143,19 @@
     ],
     "challenge": "(lambda (x_523) (shr1 x_523))"
 }
+{
+    "id": "XqlIj4pqIDnFbQ740xZifsss",
+    "size": 24,
+    "operators": [
+        "if0",
+        "or",
+        "plus",
+        "shl1",
+        "shr1",
+        "shr16",
+        "shr4",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_53393) (fold x_53393 0 (lambda (x_53393 x_53394) (plus (xor 1 (shl1 (shl1 (shr16 (xor (or (if0 (shr4 (xor (shr1 x_53394) x_53394)) x_53393 0) 1) x_53393))))) x_53393))))"
+}

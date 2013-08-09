@@ -1,0 +1,43 @@
+{
+    "id": "2GppoEO1heENug683AZfQF99",
+    "size": 3,
+    "operators": [
+        "shr1"
+    ],
+    "challenge": "(lambda (x_523) (shr1 x_523))"
+}
+eval
+{"id":"2GppoEO1heENug683AZfQF99",
+      "arguments":["0xEFFFFFFFFFFFFF", 
+                   "0x00000000000001"]}
+response:
+{
+    "status": "ok",
+    "outputs": [
+        "0x0077FFFFFFFFFFFF",
+        "0x0000000000000000"
+    ]
+}
+eval
+{ "program":"(lambda (x) (shr1 x))",
+        "arguments":["0xEFFFFFFFFFFFFF", 
+                   "0x00000000000001"]}
+Result: success
+ Content: 
+{
+    "status": "ok",
+    "outputs": [
+        "0x0077FFFFFFFFFFFF",
+        "0x0000000000000000"
+    ]
+}
+
+guess 
+{"id":"2GppoEO1heENug683AZfQF99",
+      "program":"(lambda (x) (shr1 x))"}
+
+Content: 
+{
+    "status": "win",
+    "lightning": true
+}
