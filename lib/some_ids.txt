@@ -1,0 +1,145 @@
+{
+    "id": "HciDf40pYqDfy8qdNUgy78H2",
+    "size": 29,
+    "operators": [
+        "if0",
+        "not",
+        "or",
+        "plus",
+        "shl1",
+        "shr1",
+        "shr16",
+        "shr4",
+        "xor"
+    ],
+    "challenge": "(lambda (x_46973) (not (plus x_46973 (shr1 (or (shr4 (shl1 (or (shl1 x_46973) (shl1 (or 1 (shr16 (xor x_46973 (shr1 (shr1 (if0 (or (xor 1 (shr4 x_46973)) x_46973) 1 1)))))))))) x_46973)))))"
+}
+{
+    "id": "Um6XwuZdlnjlCkAIW6zSFD2G",
+    "size": 21,
+    "operators": [
+        "and",
+        "if0",
+        "not",
+        "plus",
+        "shr1",
+        "shr16",
+        "shr4",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_39757) (fold x_39757 0 (lambda (x_39757 x_39758) (and (not x_39758) (xor (shr4 (shr1 (if0 (plus (and x_39758 (shr16 x_39758)) x_39758) 1 x_39758))) x_39757)))))"
+}
+{
+    "id": "78mOmfw0j5kBH9IcNwSBl5CT",
+    "size": 26,
+    "operators": [
+        "and",
+        "fold",
+        "if0",
+        "or",
+        "plus",
+        "shr1",
+        "shr16",
+        "xor"
+    ],
+    "challenge": "(lambda (x_66490) (fold x_66490 (xor x_66490 (and (shr1 0) (shr16 (or (xor (if0 (and (plus x_66490 1) x_66490) 0 x_66490) 0) x_66490)))) (lambda (x_66491 x_66492) (if0 x_66491 x_66491 x_66492))))"
+}
+{
+    "id": "cMnBPAdIuhiVJzXBw6IVPhsW",
+    "size": 30,
+    "operators": [
+        "if0",
+        "not",
+        "or",
+        "plus",
+        "shl1",
+        "shr1",
+        "shr4",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_85963) (fold x_85963 0 (lambda (x_85963 x_85964) (xor (plus (or x_85963 (shr4 (shr4 (shr4 (not (plus x_85964 (if0 (shl1 x_85964) (if0 (xor (xor (shr1 x_85964) 0) x_85963) x_85963 x_85963) 0))))))) x_85963) x_85963))))"
+}
+{
+    "id": "hih4Gxs6DQl3oSWNjKgXffOc",
+    "size": 25,
+    "operators": [
+        "if0",
+        "not",
+        "or",
+        "plus",
+        "shl1",
+        "shr4",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_61159) (fold x_61159 0 (lambda (x_61159 x_61160) (plus (shl1 (plus (shl1 (xor (shr4 1) x_61160)) (or (if0 (or (xor 0 (not 0)) x_61160) 1 x_61159) x_61159))) 1))))"
+}
+{
+    "id": "6mkqTqAYMkunEGc5s1fLADiL",
+    "size": 24,
+    "operators": [
+        "and",
+        "fold",
+        "if0",
+        "not",
+        "shl1",
+        "shr4"
+    ],
+    "challenge": "(lambda (x_60479) (fold (if0 (not (shl1 (and (shl1 (shr4 (and (and (and 1 1) x_60479) 1))) 0))) x_60479 x_60479) 1 (lambda (x_60480 x_60481) (and (not x_60481) x_60480))))"
+}
+{
+    "id": "YPDP3Jwore6tmyV2EE6IwyvV",
+    "size": 27,
+    "operators": [
+        "and",
+        "if0",
+        "not",
+        "or",
+        "plus",
+        "shl1",
+        "shr16",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_69093) (fold x_69093 0 (lambda (x_69093 x_69094) (plus (plus (and (shl1 (and (not (or 1 x_69093)) (if0 (xor (plus (shr16 (shl1 x_69093)) x_69093) x_69093) 1 x_69094))) 1) x_69094) x_69093))))"
+}
+{
+    "id": "o97qkSOnx8AMAM4hzF2AAGrf",
+    "size": 27,
+    "operators": [
+        "and",
+        "fold",
+        "if0",
+        "not",
+        "or",
+        "plus",
+        "shr1",
+        "shr4",
+        "xor"
+    ],
+    "challenge": "(lambda (x_69410) (fold (if0 (shr1 (not (and x_69410 (shr4 (shr1 (plus (shr4 (or (or (xor x_69410 0) x_69410) 0)) 1)))))) 0 x_69410) 0 (lambda (x_69411 x_69412) (or x_69411 (shr4 x_69412)))))"
+}
+{
+    "id": "wGCYv7cYT9YfqqaBvtwArIf0",
+    "size": 19,
+    "operators": [
+        "and",
+        "if0",
+        "not",
+        "plus",
+        "shr16",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_35025) (fold x_35025 0 (lambda (x_35025 x_35026) (plus x_35025 (shr16 (and (if0 (xor (not (plus x_35026 x_35026)) x_35026) 0 x_35025) x_35026))))))"
+}
+{
+    "id": "2GppoEO1heENug683AZfQF99",
+    "size": 3,
+    "operators": [
+        "shr1"
+    ],
+    "challenge": "(lambda (x_523) (shr1 x_523))"
+}
