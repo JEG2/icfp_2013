@@ -1,3 +1,5 @@
+require_relative "spec_helper"
+
 describe "AST evaluation" do
 
   let(:one)  { Sherlock::AST::Constant.new(1)  }

@@ -1,3 +1,5 @@
+require_relative "spec_helper"
+
 describe Sherlock::AST do
   def parser(expression)
     lexer  = Sherlock::Lexer.new(expression)
