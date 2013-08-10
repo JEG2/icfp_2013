@@ -58,7 +58,6 @@ module Sherlock
 
       def guess(program, &on_success)
         puts "Guessing:  #{program}"
-        sleep 5
         result, response = api.guess(problem["id"], program.to_s)
         if result == :success
           on_success.call(response)

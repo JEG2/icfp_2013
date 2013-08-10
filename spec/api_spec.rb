@@ -1,8 +1,8 @@
 require_relative "spec_helper"
 
 describe Sherlock::API do
-  let(:ua)  { double                }
-  let(:api) { Sherlock::API.new(ua) }
+  let(:ua)  { double                            }
+  let(:api) { Sherlock::API.new(user_agent: ua) }
 
   it "can request and return a list of problems" do
     problem = { "id"        => 12345,
@@ -208,7 +208,18 @@ describe Sherlock::API do
   it "forwards the base URL to the user agent" do
     ua.should_receive(:new)
       .with(hash_including(url: "http://icfpc2013.cloudapp.net"))
-    Sherlock::API.new(ua)
+    Sherlock::API.new(user_agent: ua)
+  end
+
+  it "rate limits requests" do
+    ua.stub(new: ua, post: double(status: 200, body: nil))
+    limiter = double.tap do |l|
+      l.should_receive(:sleep)
+       .with(kind_of(Numeric))
+    end
+    api = Sherlock::API.new(user_agent: ua, limiter: limiter)
+    api.my_problems
+    api.status
   end
 
   it "interprets error codes" do

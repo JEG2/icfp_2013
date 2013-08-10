@@ -4,14 +4,14 @@ require_relative "../lib/sherlock"
 
 require "json"
 
+api = Sherlock::API.new
 loop do
-  result, problem = Sherlock::API.new.train
+  result, problem = api.train
   if result == :success
     print "Testing size... "
     program = Sherlock::Parser.parse(problem["challenge"])
     if program.size == problem["size"]
       puts "we agree with the server."
-      sleep 5
     else
       puts "we found a mismatch."
       puts
