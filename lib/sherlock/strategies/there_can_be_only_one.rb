@@ -1,6 +1,6 @@
 module Sherlock
   module Strategies
-    class ThereCanBeOnlyOne
+    class ThereCanBeOnlyOne < Strategy
       SAFE_OPERATORS = { "not"   => AST::NotOperator,
                          "shr1"  => AST::ShiftRightOne,
                          "shr4"  => AST::ShiftRightFour,
@@ -12,36 +12,18 @@ module Sherlock
         SAFE_OPERATORS.include?(problem["operators"].first)
       end
 
-      def initialize(problem, api: api, io: $stdout)
-        @problem = problem
-        @api     = api
-      end
-
-      attr_reader :problem, :api
-      private     :problem, :api
-
       def solve(inner_value = AST::Variable.new("x"))
         operator = SAFE_OPERATORS.fetch(problem["operators"].first)
         attempt  = build_program(operator, inner_value)
-        guess(attempt) do |response|
-          case response["status"]
-          when "win"
-            puts "Solved!"
-          when "mismatch"
-            input, output, _ = response["values"].map { |hex| Integer(hex) }
-            one              = AST::Constant.new(1)
-            evaluated        = build_program(operator, one).run(input)
-            puts "Guess was wrong."
-            puts "           Input:  #{input}"
-            puts " Expected output:  #{output}"
-            puts "Output using one:  #{evaluated}"
-            if evaluated == output
-              solve(one)
-            else
-              solve(AST::Constant.new(0))
-            end
+        guess(attempt) do |input, output, _|
+          one       = build_program(operator, AST::Constant.new(1))
+          evaluated = one.run(input)
+          puts
+          puts "Output using 1:  #{evaluated}"
+          if evaluated == output
+            one
           else
-            abort "Guess error:  #{response['message']}"
+            build_program(operator, AST::Constant.new(0))
           end
         end
       end
@@ -54,16 +36,6 @@ module Sherlock
           wrapped = operator.new(wrapped)
         end
         AST::Program.new(AST::Variable.new("x"), wrapped)
-      end
-
-      def guess(program, &on_success)
-        puts "Guessing:  #{program}"
-        result, response = api.guess(problem["id"], program.to_s)
-        if result == :success
-          on_success.call(response)
-        else
-          abort "Guess failed:  #{result.to_s.tr('_', ' ')}"
-        end
       end
     end
   end

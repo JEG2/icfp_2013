@@ -21,5 +21,6 @@ require_relative "sherlock/ast/fold"
 require_relative "sherlock/ast/program"
 require_relative "sherlock/parser"
 
+require_relative "sherlock/strategy"
 require_relative "sherlock/strategies/there_can_be_only_one"
 require_relative "sherlock/solver"

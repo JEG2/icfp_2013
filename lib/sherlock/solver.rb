@@ -21,7 +21,9 @@ module Sherlock
         if (strategy = find_strategy(problem))
           io.puts "Solving:"
           io.puts JSON.pretty_generate(problem)
-          strategy.new(problem, api: api, io: io).solve
+          guesser = strategy.new(problem, api: api, io: io)
+          guesser.solve
+          break unless guesser.continue?
         end
       end
     end
