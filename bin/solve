@@ -4,6 +4,8 @@ require_relative "../lib/sherlock"
 
 require "json"
 
-solver = Sherlock::Solver.new
+training_mode = !ARGV.delete("--no-train")
+
+solver = Sherlock::Solver.new(train: training_mode)
 solver.add_strategy(Sherlock::Strategies::ThereCanBeOnlyOne)
 solver.solve
