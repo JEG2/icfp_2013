@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/sherlock"
+
+require "json"
+require "set"
+
+def normalize_fold(operators)
+  if operators.include?("tfold")
+    operators.delete("tfold")
+    operators << "fold"
+  end
+end
+
+loop do
+  result, problem = Sherlock::API.new.train
+  if result == :success
+    print "Testing operators... "
+    program = Sherlock::Parser.parse(problem["challenge"])
+    normalize_fold(problem["operators"])
+    if program.operators == problem["operators"].to_set
+      puts "we agree with the server."
+      sleep 5
+    else
+      puts "we found a mismatch."
+      puts
+      puts "        Program:  #{problem['challenge']}"
+      puts "         We say:  #{program.operators.to_a.join(", ")}"
+      puts "The server says:  #{problem['operators'].join(", ")}"
+      puts
+      exit
+    end
+  else
+    abort result.to_s.tr("_", " ")
+  end
+end
