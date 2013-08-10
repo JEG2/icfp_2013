@@ -1,3 +1,5 @@
+require "set"
+
 module Sherlock
   module AST
     class IfOperator
@@ -11,6 +13,13 @@ module Sherlock
 
       def size
         1 + @condition.size + @consequence.size + @alternative.size
+      end
+
+      def operators
+        Set["if0"] +
+          @condition.operators +
+          @consequence.operators +
+          @alternative.operators
       end
     end
   end

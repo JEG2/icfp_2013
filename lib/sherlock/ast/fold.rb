@@ -1,3 +1,5 @@
+require "set"
+
 module Sherlock
   module AST
     class Fold
@@ -13,6 +15,13 @@ module Sherlock
 
       def size
         2 + @folded_over.size + @initializer.size + @expression.size
+      end
+
+      def operators
+        Set["fold"] +
+          @folded_over.operators +
+          @initializer.operators +
+          @expression.operators
       end
     end
   end

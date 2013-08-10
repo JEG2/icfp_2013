@@ -1,3 +1,5 @@
+require "set"
+
 module Sherlock
   module AST
     class XorOperator
@@ -9,6 +11,10 @@ module Sherlock
 
       def size
         1 + @left_expression.size + @right_expression.size
+      end
+
+      def operators
+        Set["xor"] + @left_expression.operators + @right_expression.operators
       end
     end
   end

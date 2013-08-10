@@ -1,3 +1,5 @@
+require "set"
+
 module Sherlock
   module AST
     class Constant
@@ -9,6 +11,10 @@ module Sherlock
 
       def size
         1
+      end
+
+      def operators
+        Set[ ]
       end
     end
   end

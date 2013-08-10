@@ -1,3 +1,5 @@
+require "set"
+
 module Sherlock
   module AST
     class ShiftRightOne
@@ -9,6 +11,10 @@ module Sherlock
       
       def size
         1 + @expression.size
+      end
+
+      def operators
+        Set["shr1"] + @expression.operators
       end
     end
   end
