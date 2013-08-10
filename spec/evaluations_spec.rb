@@ -117,5 +117,10 @@ describe "AST evaluation" do
       expect(shl1.evaluate({"x" => 0xFFFF0000})).to eq(0x1FFFE0000)
     end
 
+#    it "evaluates 0x8000000000000000 shl1 case" do
+#      shl1 = Sherlock::AST::ShiftLeftOne.new(x)
+#      expect(shl1.evaluate({"x" => 0x8000000000000000})).to eq(0x0000000000000000)
+#    end
+
   end
 end
