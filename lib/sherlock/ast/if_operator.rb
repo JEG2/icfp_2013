@@ -28,6 +28,14 @@ module Sherlock
       def to_s
         "(#{self.class.bv_keyword} #{@condition} #{@consequence} #{@alternative})"
       end
+
+      def evaluate(context)
+        if @condition.evaluate(context).zero?
+          @consequence.evaluate(context)
+        else
+          @alternative.evaluate(context)
+        end
+      end
     end
   end
 end

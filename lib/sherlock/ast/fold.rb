@@ -30,6 +30,15 @@ module Sherlock
       def to_s
         "(#{self.class.bv_keyword} #{@folded_over} #{initializer} (lambda (#{@byte} #{@accumulator}) #{@expression}))"
       end
+
+      def evaluate(context)
+        folded_num = @folded_over.evaluate(context)
+        bytes      = Array.new(8) { |i| (folded_num >> i * 8) & 0xFF }
+        bytes.inject(@initializer.evaluate(context)) do |accumulator, byte |
+          @expression.evaluate(context.merge({@byte.name        => byte,
+                                              @accumulator.name => accumulator}))
+        end
+      end
     end
   end
 end
