@@ -1,21 +1,12 @@
 require "set"
+require_relative "binary_operator"
 
 module Sherlock
   module AST
-    class AndOperator
-      def initialize(left_expression, right_expression)
-        @left_expression, @right_expression = left_expression, right_expression
-      end
+    class AndOperator < BinaryOperator
 
-      attr_reader :left_expression, :right_expression
-      
-      def size
-        1 + @left_expression.size + @right_expression.size
-      end
+      bv_keyword "and"
 
-      def operators
-        Set["and"] + @left_expression.operators + @right_expression.operators
-      end
     end
   end
 end

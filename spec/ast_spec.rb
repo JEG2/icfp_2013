@@ -58,4 +58,40 @@ describe Sherlock::AST do
     parser = parser("(plus 0 1)")
     expect(parser.parse_sexp.operators).to eq(Set["plus"])
   end
+
+  it "stringifies unary operators" do
+    expression = "(shr1 1)"
+    parser = parser(expression)
+    expect(parser.parse_sexp.to_s).to eq(expression)
+  end
+
+  it "stringifies binary operators" do
+    expression = "(plus 0 1)"
+    parser = parser(expression)
+    expect(parser.parse_sexp.to_s).to eq(expression)
+  end
+
+  it "stringifies constants" do
+    constant = "1"
+    parser = parser(constant)
+    expect(parser.parse_constant.to_s).to eq(constant)
+  end
+
+  it "stringifies variables" do
+    variable = "x"
+    parser = parser(variable)
+    expect(parser.parse_variable.to_s).to eq(variable)
+  end
+
+  it "stringifies fold" do
+    expression = "(fold x y (lambda (c f) 1))"
+    parser = parser(expression)
+    expect(parser.parse_expression.to_s).to eq(expression)
+  end
+
+  it "stringifies if0" do
+    expression = "(if0 x y z)"
+    parser = parser(expression)
+    expect(parser.parse_expression.to_s).to eq(expression)
+  end
 end

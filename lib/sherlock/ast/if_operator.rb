@@ -1,13 +1,16 @@
 require "set"
+require_relative "expression"
 
 module Sherlock
   module AST
-    class IfOperator
+    class IfOperator < Expression
       def initialize(condition, consequence, alternative)
         @condition   = condition
         @consequence = consequence
         @alternative = alternative
       end
+
+      bv_keyword "if0"
 
       attr_reader :condition, :consequence, :alternative
 
@@ -16,10 +19,14 @@ module Sherlock
       end
 
       def operators
-        Set["if0"] +
+        Set[self.class.bv_keyword] +
           @condition.operators +
           @consequence.operators +
           @alternative.operators
+      end
+
+      def to_s
+        "(#{self.class.bv_keyword} #{@condition} #{@consequence} #{@alternative})"
       end
     end
   end

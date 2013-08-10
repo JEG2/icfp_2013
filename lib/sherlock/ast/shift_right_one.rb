@@ -1,28 +1,14 @@
 require "set"
+require_relative "unary_operator"
 
 module Sherlock
   module AST
-    class ShiftRightOne
-      def initialize(expression)
-        @expression = expression
-      end
+    class ShiftRightOne < UnaryOperator
 
-      attr_reader :expression
+      bv_keyword "shr1"
       
-      def size
-        1 + @expression.size
-      end
-
-      def operators
-        Set["shr1"] + @expression.operators
-      end
-
       def evaluate(context)
         @expression.evaluate(context) >> 1
-      end
-
-      def to_s
-        "(shr1 #{@expression})"
       end
     end
   end

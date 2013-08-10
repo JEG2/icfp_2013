@@ -1,8 +1,9 @@
 require "set"
+require_relative "expression"
 
 module Sherlock
   module AST
-    class Constant
+    class Constant < Expression
       def initialize(value)
         @value = value
       end

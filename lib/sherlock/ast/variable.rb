@@ -1,8 +1,9 @@
 require "set"
+require_relative "expression"
 
 module Sherlock
   module AST
-    class Variable
+    class Variable < Expression
       def initialize(name)
         @name = name
       end
