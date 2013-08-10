@@ -12,7 +12,7 @@ module Sherlock
         SAFE_OPERATORS.include?(problem["operators"].first)
       end
 
-      def initialize(problem, api)
+      def initialize(problem, api: api, io: $stdout)
         @problem = problem
         @api     = api
       end
@@ -58,7 +58,6 @@ module Sherlock
 
       def guess(program, &on_success)
         puts "Guessing:  #{program}"
-        sleep 5
         result, response = api.guess(problem["id"], program.to_s)
         if result == :success
           on_success.call(response)

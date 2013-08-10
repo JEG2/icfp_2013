@@ -12,15 +12,15 @@ def normalize_fold(operators)
   end
 end
 
+api = Sherlock::API.new
 loop do
-  result, problem = Sherlock::API.new.train
+  result, problem = api.train
   if result == :success
     print "Testing operators... "
     program = Sherlock::Parser.parse(problem["challenge"])
     normalize_fold(problem["operators"])
     if program.operators == problem["operators"].to_set
       puts "we agree with the server."
-      sleep 5
     else
       puts "we found a mismatch."
       puts

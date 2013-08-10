@@ -12,16 +12,21 @@ module Sherlock
                      412 => :already_solved,
                      413 => :request_too_big,
                      429 => :try_again_later }
-    MAX_VECTOR   = 0xFFFFFFFFFFFFFFFF
-    
-    def initialize(user_agent = Faraday)
-      @token = File.read( File.join(File.dirname(__FILE__),
-                          *%w[.. .. data token.txt]) ).strip
-      @ua    = user_agent.new(url: "http://icfpc2013.cloudapp.net")
+
+    def initialize(user_agent: Faraday, rate_limit: 5, limiter: Kernel)
+      @token           = File.read( File.join(File.dirname(__FILE__),
+                                    *%w[.. .. data token.txt]) ).strip
+      @ua              = user_agent.new(url: "http://icfpc2013.cloudapp.net")
+      @last_request_at = nil
+      @rate_limit      = rate_limit
+      @limiter         = limiter
     end
 
-    attr_reader :token, :ua
-    private     :token, :ua
+    attr_reader :token, :ua, :last_request_at, :rate_limit, :limiter
+    private     :token, :ua, :last_request_at, :rate_limit, :limiter
+
+    attr_accessor :last_request_at
+    private       :last_request_at, :last_request_at=
 
     def my_problems
       request(:myproblems)
@@ -38,7 +43,10 @@ module Sherlock
                                               !arguments.empty?
       fail "Too many arguments"        if     arguments.size > 256
       fail "Invalid arguments"         if     arguments.any? { |a|
-                                                !a.between?(0, MAX_VECTOR)
+                                                !a.between?(
+                                                  0,
+                                                  AST::Expression::MAX_VECTOR
+                                                )
                                               }
 
       params             = { }
@@ -75,10 +83,21 @@ module Sherlock
     private
 
     def request(action, params = { })
+      respect_rate_limit
       response = ua.post(path(action)) do |request|
         request.body = params.to_json unless params.empty?
       end
       [result(response.status), content(response.body)]
+    end
+
+    def respect_rate_limit
+      unless last_request_at.nil?
+        elapsed = Time.now - last_request_at
+        if elapsed < rate_limit
+          limiter.sleep(rate_limit - elapsed)
+        end
+      end
+      self.last_request_at = Time.now
     end
 
     def path(action)
