@@ -2,15 +2,16 @@ require "json"
 
 module Sherlock
   class Solver
-    def initialize(api: API.new, io: $stdout, train: true)
-      @api        = api
-      @io         = io
-      @strategies = [ ]
-      @train      = train
+    def initialize(api: API.new, io: $stdout, train: true, train_options: { })
+      @api           = api
+      @io            = io
+      @strategies    = [ ]
+      @train         = train
+      @train_options = train_options
     end
 
-    attr_reader :api, :io, :strategies
-    private     :api, :io, :strategies
+    attr_reader :api, :io, :strategies, :train_options
+    private     :api, :io, :strategies, :train_options
 
     def add_strategy(strategy)
       strategies << strategy
@@ -49,7 +50,7 @@ module Sherlock
     def training_problems(&iterator)
       stream = Enumerator.new do |yielder|
         loop do
-          result, problem = api.train(operators: "fold")
+          result, problem = api.train(train_options)
           if result == :success
             yielder << problem
           else
