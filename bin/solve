@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/sherlock"
+
+require "json"
+
+solver = Sherlock::Solver.new
+solver.add_strategy(Sherlock::Strategies::ThereCanBeOnlyOne)
+solver.solve
