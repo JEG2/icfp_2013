@@ -8,7 +8,7 @@ module Sherlock
       bv_keyword "shl1"
 
       def evaluate(context)
-        (@expression.evaluate(context) << 1) & API::MAX_VECTOR
+        (@expression.evaluate(context) << 1) & MAX_VECTOR
       end
     end
   end

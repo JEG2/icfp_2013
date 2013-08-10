@@ -109,7 +109,8 @@ describe Sherlock::API do
   it "requires valid arguments for evaluation" do
     ua.stub(:new)
     expect do
-      api.eval(id: "ABC", arguments: [Sherlock::API::MAX_VECTOR + 1])
+      api.eval( id:        "ABC",
+                arguments: [Sherlock::AST::Expression::MAX_VECTOR + 1] )
     end.to raise_error(RuntimeError)
   end
 

@@ -12,8 +12,7 @@ module Sherlock
                      412 => :already_solved,
                      413 => :request_too_big,
                      429 => :try_again_later }
-    MAX_VECTOR   = 0xFFFFFFFFFFFFFFFF
-    
+
     def initialize(user_agent = Faraday)
       @token = File.read( File.join(File.dirname(__FILE__),
                           *%w[.. .. data token.txt]) ).strip
@@ -38,7 +37,10 @@ module Sherlock
                                               !arguments.empty?
       fail "Too many arguments"        if     arguments.size > 256
       fail "Invalid arguments"         if     arguments.any? { |a|
-                                                !a.between?(0, MAX_VECTOR)
+                                                !a.between?(
+                                                  0,
+                                                  AST::Expression::MAX_VECTOR
+                                                )
                                               }
 
       params             = { }
