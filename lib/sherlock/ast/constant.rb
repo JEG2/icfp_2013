@@ -16,6 +16,10 @@ module Sherlock
       def operators
         Set[ ]
       end
+
+      def evaluate(context)
+        @value
+      end
     end
   end
 end

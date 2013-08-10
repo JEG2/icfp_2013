@@ -14,7 +14,7 @@ module Sherlock
       end
 
       def operators
-        Set["plus"] + @left_expression.operators + @left_expression.operators
+        Set["plus"] + @left_expression.operators + @right_expression.operators
       end
     end
   end

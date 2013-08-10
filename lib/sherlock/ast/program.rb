@@ -16,6 +16,14 @@ module Sherlock
       def operators
         Set[] + @expression.operators
       end
+
+      def evaluate(context)
+        @expression.evaluate(context)
+      end
+
+      def run(input)
+        evaluate({ @variable.name => input })
+      end
     end
   end
 end

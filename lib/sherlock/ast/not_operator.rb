@@ -16,6 +16,10 @@ module Sherlock
       def operators
         Set["not"] + @expression.operators
       end
+
+      def evaluate(context)
+        @expression.evaluate(context) ^ API::MAX_VECTOR
+      end
     end
   end
 end

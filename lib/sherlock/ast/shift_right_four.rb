@@ -16,6 +16,10 @@ module Sherlock
       def operators
         Set["shr4"] + @expression.operators
       end
+
+      def evaluate(context)
+        @expression.evaluate(context) >> 4
+      end
     end
   end
 end
