@@ -2,6 +2,7 @@ require "bundler"
 Bundler.setup
 
 require_relative "sherlock/api"
+
 require_relative "sherlock/lexer"
 
 require_relative "sherlock/ast/variable"
@@ -19,3 +20,6 @@ require_relative "sherlock/ast/if_operator"
 require_relative "sherlock/ast/fold"
 require_relative "sherlock/ast/program"
 require_relative "sherlock/parser"
+
+require_relative "sherlock/strategies/there_can_be_only_one"
+require_relative "sherlock/solver"

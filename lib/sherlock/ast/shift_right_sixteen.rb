@@ -20,6 +20,10 @@ module Sherlock
       def evaluate(context)
         @expression.evaluate(context) >> 16
       end
+
+      def to_s
+        "(shr16 #{@expression})"
+      end
     end
   end
 end

@@ -20,6 +20,10 @@ module Sherlock
       def evaluate(context)
         @expression.evaluate(context) ^ API::MAX_VECTOR
       end
+
+      def to_s
+        "(not #{@expression})"
+      end
     end
   end
 end
