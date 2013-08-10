@@ -159,3 +159,162 @@
     ],
     "challenge": "(lambda (x_53393) (fold x_53393 0 (lambda (x_53393 x_53394) (plus (xor 1 (shl1 (shl1 (shr16 (xor (or (if0 (shr4 (xor (shr1 x_53394) x_53394)) x_53393 0) 1) x_53393))))) x_53393))))"
 }
+{
+    "id": "qi58uJ0bcD8gbseo08vSqw2V",
+    "size": 11,
+    "operators": [
+        "and",
+        "if0",
+        "or",
+        "shl1",
+        "shr4"
+    ],
+    "challenge": "(lambda (x_10639) (or (if0 (and (shl1 (shr4 x_10639)) x_10639) x_10639 1) x_10639))"
+}
+{
+    "id": "9ov4kAkW3pADrBBqpzyPFuyz",
+    "size": 10,
+    "operators": [
+        "and",
+        "if0",
+        "not",
+        "or"
+    ],
+    "challenge": "(lambda (x_10134) (if0 (and (not (or x_10134 0)) 1) 0 1))"
+}
+{
+    "id": "81mBT7uSbbuvRkf0uGRLurNC",
+    "size": 5,
+    "operators": [
+        "or",
+        "shr16"
+    ],
+    "challenge": "(lambda (x_3170) (or (shr16 x_3170) 1))"
+}
+{
+    "id": "zv0Sb4Ne5EKH4fxeGtyEymTr",
+    "size": 4,
+    "operators": [
+        "plus"
+    ],
+    "challenge": "(lambda (x_1575) (plus x_1575 x_1575))"
+}
+{
+    "id": "lcH8jqdH8sx3HAl7dJPyS5wz",
+    "size": 25,
+    "operators": [
+        "and",
+        "if0",
+        "not",
+        "or",
+        "plus",
+        "shl1",
+        "shr1",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_61417) (fold x_61417 0 (lambda (x_61417 x_61418) (plus (shr1 (or x_61418 x_61418)) (if0 (shl1 (xor (not (not (or (and (not x_61417) (shr1 x_61417)) 0))) x_61418)) x_61417 x_61418)))))"
+}
+{
+    "id": "QNCo2JVw8fA6Xs1cNj4OzNXW",
+    "size": 7,
+    "operators": [
+        "plus",
+        "shl1",
+        "xor"
+    ],
+    "challenge": "(lambda (x_6084) (plus (xor (shl1 x_6084) 0) 1))"
+}
+{
+    "id": "7lFHAkuRYnkoHjCW3wqDzYNh",
+    "size": 11,
+    "operators": [
+        "and",
+        "fold",
+        "not",
+        "plus"
+    ],
+    "challenge": "(lambda (x_1134) (fold 0 (and x_1134 1) (lambda (x_1135 x_1136) (not (plus x_1135 x_1136)))))"
+}
+{
+    "id": "yFDo8XS7S2Dl0K2YrBYrdC7U",
+    "size": 30,
+    "operators": [
+        "if0",
+        "not",
+        "plus",
+        "shr1",
+        "shr16",
+        "shr4",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_83473) (fold x_83473 0 (lambda (x_83473 x_83474) (plus (shr1 (shr16 (plus (shr16 (if0 x_83473 (shr16 (shr4 (not (plus (plus (if0 (xor (shr16 (shr16 x_83473)) x_83473) x_83473 x_83474) 0) x_83473)))) x_83473)) x_83473))) x_83473))))"
+}
+{
+    "id": "BNp7TBifufINVR9KCbXrhgB5",
+    "size": 21,
+    "operators": [
+        "and",
+        "if0",
+        "not",
+        "plus",
+        "shl1",
+        "shr1",
+        "shr4",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_43291) (fold x_43291 0 (lambda (x_43291 x_43292) (shr4 (if0 (shr1 (and (and (xor (plus (not 1) 0) (shl1 x_43291)) 0) x_43292)) x_43291 1)))))"
+}
+{
+    "id": "ZesUAo23EVX4wRMdkYA1MgpJ",
+    "size": 20,
+    "operators": [
+        "and",
+        "if0",
+        "plus",
+        "shl1",
+        "shr1",
+        "shr4",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_36923) (fold x_36923 0 (lambda (x_36923 x_36924) (and x_36923 (plus (shr4 (xor (if0 (shr1 (shl1 (plus x_36924 0))) 0 x_36924) x_36923)) 0)))))"
+}
+{
+    "id": "TeHpN4gvbNTU94YHlJcWP7sR",
+    "size": 19,
+    "operators": [
+        "if0",
+        "not",
+        "or",
+        "shr16",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_34791) (fold x_34791 0 (lambda (x_34791 x_34792) (xor (shr16 (or (if0 (or (shr16 (not x_34791)) (not x_34791)) x_34791 x_34792) x_34792)) x_34791))))"
+}
+{
+    "id": "vE0mjUVB1JPwJEbc5Bn8Gv5B",
+    "size": 11,
+    "operators": [
+        "and",
+        "not",
+        "tfold",
+        "xor"
+    ],
+    "challenge": "(lambda (x_9317) (fold x_9317 0 (lambda (x_9317 x_9318) (and (xor x_9317 (not x_9317)) x_9317))))"
+}
+{
+    "id": "dD17cSr7aQ9gE39Wd2lZkFBZ",
+    "size": 13,
+    "operators": [
+        "and",
+        "if0",
+        "shr1",
+        "shr16",
+        "tfold"
+    ],
+    "challenge": "(lambda (x_13879) (fold x_13879 0 (lambda (x_13879 x_13880) (if0 (shr1 (and (shr16 x_13880) 1)) x_13879 0))))"
+}
