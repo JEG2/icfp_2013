@@ -7,6 +7,10 @@ module Sherlock
 
       bv_keyword "plus"
 
+      def evaluate(context)
+        (@left_expression.evaluate(context) + @right_expression.evaluate(context)) &
+          MAX_VECTOR
+      end
     end
   end
 end

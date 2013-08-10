@@ -27,7 +27,8 @@ describe Sherlock::Solver do
 
   it "reports on the problem being solved" do
     problem  = {"size" => 3}
-    strategy = double(can_handle?: true, new: double(solve: nil))
+    strategy = double( can_handle?: true,
+                       new:         double(solve: nil, continue?: true ) )
     api      = double(my_problems: [:success, [problem]])
     io       = StringIO.new
     solver   = Sherlock::Solver.new(api: api, io: io, train: false)
@@ -40,10 +41,31 @@ describe Sherlock::Solver do
     problem  = {"size" => 3}
     api      = double(my_problems: [:success, [problem]])
     io       = StringIO.new
-    instance = double.tap do |i|
+    instance = double(continue?: true).tap do |i|
       i.should_receive(:solve)
     end
     strategy = double(can_handle?: true).tap do |s|
+      s.should_receive(:new)
+       .with(problem, hash_including(api: api, io: io))
+       .and_return(instance)
+    end
+    solver   = Sherlock::Solver.new(api: api, io: io, train: false)
+    solver.add_strategy(strategy)
+    solver.solve
+  end
+
+  it "asks a matching strategy if it's OK to continue" do
+    problem  = {"size" => 3}
+    api      = double(my_problems: [:success, [problem, problem]])
+    io       = StringIO.new
+    instance = double(solve: true).tap do |i|
+      i.should_receive(:continue?)
+       .and_return(false)
+    end
+    strategy = double.tap do |s|
+      s.should_receive(:can_handle?)
+       .once
+       .and_return(true)
       s.should_receive(:new)
        .with(problem, hash_including(api: api, io: io))
        .and_return(instance)
