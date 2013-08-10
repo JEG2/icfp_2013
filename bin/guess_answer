@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/sherlock"
+
+require "json"
+
+unless (id      = ARGV.shift) &&
+       (program = ARGV.shift)
+  abort "Usage:  #{$PROGRAM_NAME} ID PROGRAM"
+end
+
+result, response = Sherlock::API.new.guess(id, program)
+if result == :success
+  puts JSON.pretty_generate(response)
+else
+  puts result.to_s.tr("_", " ")
+end

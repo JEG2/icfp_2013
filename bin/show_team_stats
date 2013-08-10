@@ -4,9 +4,9 @@ require_relative "../lib/sherlock"
 
 require "json"
 
-result, problems = Sherlock::API.new.my_problems
+result, stats = Sherlock::API.new.status
 if result == :success
-  puts JSON.pretty_generate(problems)
+  puts JSON.pretty_generate(stats)
 else
   puts result.to_s.tr("_", " ")
 end
