@@ -24,6 +24,10 @@ module Sherlock
       def run(input)
         evaluate({ @variable.name => input })
       end
+
+      def to_s
+        "(lambda (#{@variable}) #{@expression})"
+      end
     end
   end
 end
