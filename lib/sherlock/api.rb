@@ -13,7 +13,7 @@ module Sherlock
                      413 => :request_too_big,
                      429 => :try_again_later }
     MAX_VECTOR   = 0xFFFFFFFFFFFFFFFF
-
+    
     def initialize(user_agent = Faraday)
       @token = File.read( File.join(File.dirname(__FILE__),
                           *%w[.. .. data token.txt]) ).strip
