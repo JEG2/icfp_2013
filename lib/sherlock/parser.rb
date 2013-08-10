@@ -1,5 +1,9 @@
 module Sherlock
   class Parser
+    def self.parse(program, lexer = Lexer)
+      new(lexer.new(program)).parse
+    end
+
     def initialize(lexer)
       @lexer = lexer
     end

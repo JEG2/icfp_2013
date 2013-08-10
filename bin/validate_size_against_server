@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/sherlock"
+
+require "json"
+
+loop do
+  result, problem = Sherlock::API.new.train
+  if result == :success
+    print "Testing size... "
+    program = Sherlock::Parser.parse(problem["challenge"])
+    if program.size == problem["size"]
+      puts "we agree with the server."
+      sleep 5
+    else
+      puts "we found a mismatch."
+      puts
+      puts "        Program:  #{problem['challenge']}"
+      puts "         We say:  #{program.size}"
+      puts "The server says:  #{problem['size']}"
+      puts
+      exit
+    end
+  else
+    abort result.to_s.tr("_", " ")
+  end
+end

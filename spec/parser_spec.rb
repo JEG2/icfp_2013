@@ -6,6 +6,11 @@ describe Sherlock::Parser do
     parser = Sherlock::Parser.new(lexer)
   end
 
+  it "parses entire programs" do
+    program = Sherlock::Parser.parse("(lambda (x) 0)")
+    expect(program).to be_an_instance_of(Sherlock::AST::Program)
+  end
+
   it "parses variables" do
     variable = parser("var").parse_variable
     expect(variable).to be_an_instance_of(Sherlock::AST::Variable)
