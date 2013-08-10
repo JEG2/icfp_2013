@@ -12,7 +12,7 @@ module Sherlock
         SAFE_OPERATORS.include?(problem["operators"].first)
       end
 
-      def initialize(problem, api)
+      def initialize(problem, api: api, io: $stdout)
         @problem = problem
         @api     = api
       end
