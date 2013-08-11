@@ -50,4 +50,5 @@ solver = Sherlock::Solver.new( train:         training_mode,
                                train_options: train_options )
 solver.add_strategy(Sherlock::Strategies::ThereCanBeOnlyOne)
 solver.add_strategy(Sherlock::Strategies::ItTakesTwo)
+solver.add_strategy(Sherlock::Strategies::MrT)
 solver.solve

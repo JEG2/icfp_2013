@@ -23,4 +23,6 @@ require_relative "sherlock/parser"
 
 require_relative "sherlock/strategy"
 require_relative "sherlock/strategies/there_can_be_only_one"
+require_relative "sherlock/strategies/it_takes_two"
+require_relative "sherlock/strategies/mr_t"
 require_relative "sherlock/solver"
