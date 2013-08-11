@@ -17,7 +17,6 @@ module Sherlock
           programs = generate_all_possible_programs
         end
         puts "Built %d programs in %0.2fs" % [programs.size, elapsed]
-        exit
         guess(programs.shift.to_s) { |input, output, _|
           programs = programs.select { |program|
             program.run(input) == output
