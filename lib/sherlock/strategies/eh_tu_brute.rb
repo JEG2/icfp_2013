@@ -1,9 +1,9 @@
-require "pp"
+require "benchmark"
 
 module Sherlock
   module Strategies
     class EhTuBrute < Strategy
-      SAFE_OPERATORS = %w[not shl1 shr1 shr4 shr16 and or xor plus]
+      SAFE_OPERATORS = %w[not shl1 shr1 shr4 shr16 and or xor plus if0 tfold]
 
       def self.can_handle?(problem)
         size = ENV["BRUTE_FORCE_SIZE"].to_i
@@ -14,7 +14,11 @@ module Sherlock
       end
 
       def solve
-        programs = generate_all_possible_programs
+        programs = nil
+        elapsed  = Benchmark.realtime do
+          programs = generate_all_possible_programs
+        end
+        puts "Built %d programs in %0.2fs" % [programs.size, elapsed]
         guess(programs.shift.to_s) { |input, output, _|
           programs = programs.select { |program|
             program.run(input) == output
@@ -36,7 +40,10 @@ module Sherlock
 
       def generate_all_possible_operators
         max_size     = problem["size"] - 2
-        operators    = problem["operators"].map { |op| op.sub(/\At/, "") }
+        max_size    -= 4 if problem["operators"].include?("tfold")
+        operators    = problem["operators"].dup.tap do |original|
+          original.delete("tfold")
+        end
         extras       = operators * problem["size"]
         combinations = (operators.size..max_size).flat_map { |n|
           extras.combination(n).reject { |mix|
@@ -75,7 +82,7 @@ module Sherlock
         }.uniq
       end
 
-      def build_bv_syntax(mix, program = "(lambda (x) e)", results = [ ])
+      def build_bv_syntax(mix, program = initial_program, results = [ ])
         op   = mix.first
         rest = mix[1..-1]
 
@@ -93,6 +100,14 @@ module Sherlock
           results
         else
           results.concat(programs)
+        end
+      end
+
+      def initial_program
+        if problem["operators"].include?("tfold")
+          "(lambda (x) (fold x 0 (lambda (x y) e)))"
+        else
+          "(lambda (x) e)"
         end
       end
 
@@ -126,7 +141,8 @@ module Sherlock
           expansions = [expression]
           while expressions.first.include?("e")
             expressions = expressions.flat_map { |expression|
-              vars = %w[x 0 1]
+              vars  = %w[x 0 1]
+              vars << "y" if problem["operators"].include?("tfold")
               vars.map { |var| expression.sub("e", var) }
             }
           end
