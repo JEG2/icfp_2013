@@ -20,7 +20,7 @@ module Sherlock
     def solve
       problems do |problem|
         if (strategy = find_strategy(problem))
-          io.puts "Solving:"
+          io.puts "Solving with #{strategy.name[/\w+\z/]}:"
           io.puts JSON.pretty_generate(problem)
           guesser = strategy.new(problem, api: api, io: io)
           guesser.solve
