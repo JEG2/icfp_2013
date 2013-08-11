@@ -3,10 +3,56 @@
 require_relative "../lib/sherlock"
 
 require "json"
+require "optparse"
 
-training_mode = !ARGV.delete("--no-train")
+training_mode = true
+train_options = { }
+
+ARGV.options do |parser|
+  parser.banner = "Usage:  #{File.basename($PROGRAM_NAME)} [OPTIONS]"
+
+  parser.separator ""
+  parser.separator "Specific Options:"
+
+  parser.on( "--[no-]train",
+             "Turn training mode on or off" ) do |boolean|
+    training_mode = boolean
+  end
+  parser.on( "-s", "--size N", Integer,
+             "Problem size:  3-30" ) do |size|
+    train_options[:size] = size
+  end
+
+  parser.on( "-o", "--operators OP", String,
+             "Operators: tfold or fold" ) do |op|
+    train_options[:operators] = op
+  end
+
+  parser.separator "Common Options:"
+
+  parser.on( "-h", "--help",
+             "Show this message." ) do
+    puts parser
+    exit
+  end
+
+  begin
+    parser.parse!
+  rescue OptionParser::ParseError
+    puts parser
+    exit
+  end
+end
+
 puts "Training mode:  #{training_mode}"
 
-solver = Sherlock::Solver.new(train: training_mode)
+solver = Sherlock::Solver.new( train:         training_mode,
+                               train_options: train_options )
 solver.add_strategy(Sherlock::Strategies::ThereCanBeOnlyOne)
+solver.add_strategy(Sherlock::Strategies::ItTakesTwo)
+solver.add_strategy(Sherlock::Strategies::MrT)
+solver.add_strategy(Sherlock::Strategies::LowHangingFruit)
+solver.add_strategy(Sherlock::Strategies::WhatIf)
+solver.add_strategy(Sherlock::Strategies::IfsAndShifts)
+solver.add_strategy(Sherlock::Strategies::EhTuBrute)
 solver.solve

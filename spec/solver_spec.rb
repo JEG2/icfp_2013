@@ -97,7 +97,7 @@ describe Sherlock::Solver do
     problem = {"size" => 3}
     api     = double.tap do |a|
       a.should_receive(:train)
-       .with(hash_including(operators: "fold"))
+       .with({ })
        .and_return([:success, problem], [:success, problem], [:error, nil])
     end
     io      = StringIO.new
@@ -105,6 +105,25 @@ describe Sherlock::Solver do
     enum    = solver.to_enum(:problems)
     expect(enum.next).to eq(problem)
     expect(enum.next).to eq(problem)
+    expect do
+      enum.next
+    end.to raise_error(StopIteration)
+  end
+
+  it "can forward training options to the server" do
+    options = {size: 8, operators: "tfold"}
+    problem = {"size" => 3}
+    api     = double.tap do |a|
+      a.should_receive(:train)
+       .with(options)
+       .and_return([:error, nil])
+    end
+    io      = StringIO.new
+    solver  = Sherlock::Solver.new( api:           api,
+                                    train:         true,
+                                    io:            io,
+                                    train_options: options )
+    enum    = solver.to_enum(:problems)
     expect do
       enum.next
     end.to raise_error(StopIteration)
