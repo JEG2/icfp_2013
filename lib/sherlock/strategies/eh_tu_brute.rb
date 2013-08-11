@@ -1,15 +1,13 @@
 require "benchmark"
+require "pp"
 
 module Sherlock
   module Strategies
     class EhTuBrute < Strategy
-      SAFE_OPERATORS = %w[not shl1 shr1 shr4 shr16 and or xor plus if0 tfold]
-
       def self.can_handle?(problem)
         size = ENV["BRUTE_FORCE_SIZE"].to_i
-        size > 0                                                       &&
-        problem["size"] == size                                        &&
-        problem["operators"].all? { |op| SAFE_OPERATORS.include?(op) } &&
+        size > 0                &&
+        problem["size"] == size &&
         !problem.include?("solved")
       end
 
@@ -19,6 +17,7 @@ module Sherlock
           programs = generate_all_possible_programs
         end
         puts "Built %d programs in %0.2fs" % [programs.size, elapsed]
+        exit
         guess(programs.shift.to_s) { |input, output, _|
           programs = programs.select { |program|
             program.run(input) == output
@@ -134,16 +133,38 @@ module Sherlock
       end
 
       def generate_all_possible_terminators(expressions)
-        # if problem["operators"].include?("fold")
-          
-        # end
         expressions.flat_map { |expression|
           expansions = [expression]
           while expressions.first.include?("e")
             expressions = expressions.flat_map { |expression|
+              start_fold, stop_fold = nil, nil
+              if problem["operators"].include?("fold")
+                location   = expression.match(
+                  /\(fold\b.+?\(lambda\s*\(\w+\s+\w+\)/
+                )
+                start_fold = location.offset(0).last
+                parens     = 0
+                start_fold.upto(expression.length) do |i|
+                  if expression[i] == "("
+                    parens += 1
+                  elsif expression[i] == ")"
+                    parens -= 1
+                  end
+                  if parens < 0
+                    stop_fold = i
+                    break
+                  end
+                end
+              end
               vars  = %w[x 0 1]
-              vars << "y" if problem["operators"].include?("tfold")
-              vars.map { |var| expression.sub("e", var) }
+              i     = expression.index("e")
+              vars << "y" if problem["operators"].include?("tfold") ||
+                             (start_fold && i.between?(start_fold, stop_fold))
+              vars.map { |var|
+                new_expression       = expression.dup
+                new_expression[i, 1] = var
+                new_expression
+              }
             }
           end
           expressions
