@@ -1,5 +1,3 @@
-require "pp"
-
 module Sherlock
   module Strategies
     class LowHangingFruit < Strategy
