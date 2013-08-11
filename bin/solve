@@ -52,4 +52,5 @@ solver.add_strategy(Sherlock::Strategies::ThereCanBeOnlyOne)
 solver.add_strategy(Sherlock::Strategies::ItTakesTwo)
 solver.add_strategy(Sherlock::Strategies::MrT)
 solver.add_strategy(Sherlock::Strategies::LowHangingFruit)
+solver.add_strategy(Sherlock::Strategies::EhTuBrute)
 solver.solve
