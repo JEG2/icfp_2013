@@ -36,7 +36,7 @@ module Sherlock
             io.puts " Output:  #{output}"
             io.puts "Guessed:  #{guessed}"
             program = on_mismatch.call(input, output, guessed)
-            if program.is_a?(AST::Program)
+            if program.is_a?(String) && program.start_with?("(lambda")
               next
             else
               io.puts "No more guesses."
