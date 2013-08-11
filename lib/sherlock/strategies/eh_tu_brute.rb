@@ -1,20 +1,23 @@
+require "benchmark"
 require "pp"
 
 module Sherlock
   module Strategies
     class EhTuBrute < Strategy
-      SAFE_OPERATORS = %w[not shl1 shr1 shr4 shr16 and or xor plus]
-
       def self.can_handle?(problem)
         size = ENV["BRUTE_FORCE_SIZE"].to_i
-        size > 0                                                       &&
-        problem["size"] == size                                        &&
-        problem["operators"].all? { |op| SAFE_OPERATORS.include?(op) } &&
+        size > 0                &&
+        problem["size"] == size &&
         !problem.include?("solved")
       end
 
       def solve
-        programs = generate_all_possible_programs
+        programs = nil
+        elapsed  = Benchmark.realtime do
+          programs = generate_all_possible_programs
+        end
+        puts "Built %d programs in %0.2fs" % [programs.size, elapsed]
+        exit
         guess(programs.shift.to_s) { |input, output, _|
           programs = programs.select { |program|
             program.run(input) == output
@@ -36,7 +39,10 @@ module Sherlock
 
       def generate_all_possible_operators
         max_size     = problem["size"] - 2
-        operators    = problem["operators"].map { |op| op.sub(/\At/, "") }
+        max_size    -= 4 if problem["operators"].include?("tfold")
+        operators    = problem["operators"].dup.tap do |original|
+          original.delete("tfold")
+        end
         extras       = operators * problem["size"]
         combinations = (operators.size..max_size).flat_map { |n|
           extras.combination(n).reject { |mix|
@@ -75,7 +81,7 @@ module Sherlock
         }.uniq
       end
 
-      def build_bv_syntax(mix, program = "(lambda (x) e)", results = [ ])
+      def build_bv_syntax(mix, program = initial_program, results = [ ])
         op   = mix.first
         rest = mix[1..-1]
 
@@ -93,6 +99,14 @@ module Sherlock
           results
         else
           results.concat(programs)
+        end
+      end
+
+      def initial_program
+        if problem["operators"].include?("tfold")
+          "(lambda (x) (fold x 0 (lambda (x y) e)))"
+        else
+          "(lambda (x) e)"
         end
       end
 
@@ -119,15 +133,38 @@ module Sherlock
       end
 
       def generate_all_possible_terminators(expressions)
-        # if problem["operators"].include?("fold")
-          
-        # end
         expressions.flat_map { |expression|
           expansions = [expression]
           while expressions.first.include?("e")
             expressions = expressions.flat_map { |expression|
-              vars = %w[x 0 1]
-              vars.map { |var| expression.sub("e", var) }
+              start_fold, stop_fold = nil, nil
+              if problem["operators"].include?("fold")
+                location   = expression.match(
+                  /\(fold\b.+?\(lambda\s*\(\w+\s+\w+\)/
+                )
+                start_fold = location.offset(0).last
+                parens     = 0
+                start_fold.upto(expression.length) do |i|
+                  if expression[i] == "("
+                    parens += 1
+                  elsif expression[i] == ")"
+                    parens -= 1
+                  end
+                  if parens < 0
+                    stop_fold = i
+                    break
+                  end
+                end
+              end
+              vars  = %w[x 0 1]
+              i     = expression.index("e")
+              vars << "y" if problem["operators"].include?("tfold") ||
+                             (start_fold && i.between?(start_fold, stop_fold))
+              vars.map { |var|
+                new_expression       = expression.dup
+                new_expression[i, 1] = var
+                new_expression
+              }
             }
           end
           expressions
