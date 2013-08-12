@@ -493,7 +493,9 @@
       "shr1",
       "shr16",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 65.55799999999999
   },
   {
     "id": "180aZnJzJJBj3AOiZkqINtI1",
@@ -573,7 +575,9 @@
       "and",
       "plus",
       "shl1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "1O4lbBzAu4tJDyBq52x5gxAm",
@@ -1451,7 +1455,9 @@
       "plus",
       "shl1",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "3YpKiEbwA7B0Jd0b1EVxiJM9",
@@ -1910,7 +1916,9 @@
     "operators": [
       "shl1",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "4sYaeeM2wA6kzIIeGykq6K3g",
@@ -2215,7 +2223,9 @@
       "plus",
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "5SmiL9AekruPeTjIjqFN8G3C",
@@ -2619,7 +2629,9 @@
     "operators": [
       "plus",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "6bwKQj7DowDlQW6Aq8HZJius",
@@ -3081,7 +3093,9 @@
       "and",
       "plus",
       "shl1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "8C8X2gpKYs1woVbXFaBYrLSN",
@@ -3165,7 +3179,9 @@
       "or",
       "shl1",
       "shr1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "8LJejBZBB8OzpWIKswJt9vYo",
@@ -3727,7 +3743,9 @@
       "or",
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "9gyAQHKZHgkYuimpyTsRDRh3",
@@ -3841,7 +3859,9 @@
       "or",
       "plus",
       "shl1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 211.118
   },
   {
     "id": "9wAuOWsOpxl66HypMQ1OAPn7",
@@ -3957,7 +3977,9 @@
     "operators": [
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "A96VIwmOxWmtZRm8qZ8y62jO",
@@ -4089,7 +4111,9 @@
     "operators": [
       "not",
       "or"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "AHs3dOFFwmw10R2JwmLqsKEH",
@@ -4611,7 +4635,9 @@
       "shr1",
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "AywCio46Ejojk9yja9XkOp0D",
@@ -5255,7 +5281,9 @@
       "shr1",
       "shr16",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 194.01
   },
   {
     "id": "Bs4bgtghDZdG0Apa35zxa7wD",
@@ -5966,7 +5994,9 @@
     "operators": [
       "if0",
       "tfold"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "DQ4TP2PULAcTkvLVEYaLwil9",
@@ -6653,7 +6683,9 @@
       "plus",
       "shl1",
       "shr1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "FFSImMzE0ryayGg7ucrcjlSP",
@@ -6890,7 +6922,9 @@
       "plus",
       "shl1",
       "shr1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 84.83500000000001
   },
   {
     "id": "G5L6QC40CRxJuQnUJt0w723y",
@@ -7296,7 +7330,9 @@
     "operators": [
       "and",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "H1Dkk6TTeZqZszhwRhO0Ligq",
@@ -7699,7 +7735,9 @@
       "and",
       "shr16",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "IJxXRVnjRjLpAvAyUByZkO6H",
@@ -7877,7 +7915,9 @@
     "operators": [
       "or",
       "shr1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "J6O6oHVxFEd4MGR0EaDfELax",
@@ -8551,7 +8591,9 @@
       "not",
       "plus",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "KZAlGsvPeT7lO9FEfzjwwtoa",
@@ -8561,7 +8603,9 @@
       "plus",
       "shr1",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 230.046
   },
   {
     "id": "KaOAr7CR173FqGbmxfvCVPda",
@@ -8596,7 +8640,9 @@
       "and",
       "not",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "KcUueFdAiR9DRm9BeNC7pSS0",
@@ -9027,7 +9073,9 @@
       "shr1",
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "Lucp3eCPDE54YFMiA9JjsoNx",
@@ -9357,7 +9405,9 @@
     "operators": [
       "plus",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "MtsugcL1XS0BzC9tAxczgwcp",
@@ -9436,7 +9486,9 @@
       "not",
       "or",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "N8TCpvmvKrc78qtvEt2dSonT",
@@ -9720,7 +9772,9 @@
     "operators": [
       "plus",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "No4C9mByksRfBYanXQJoZcbA",
@@ -10177,7 +10231,9 @@
     "operators": [
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "P1ksYzbFKSmW1ObBDvRrf2VB",
@@ -11492,7 +11548,9 @@
       "or",
       "shr16",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 166.098
   },
   {
     "id": "SRZlKKqWuySAneVEmdJBCt7q",
@@ -12201,7 +12259,9 @@
     "operators": [
       "or",
       "plus"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "Uebsgeeos1qVvnbFk5w4sfDR",
@@ -13232,7 +13292,9 @@
     "operators": [
       "and",
       "if0"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "XKAelKAgBjAwMlsaDWEOwdbK",
@@ -13488,7 +13550,9 @@
       "or",
       "shl1",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 262.147
   },
   {
     "id": "Y4Ese1ej3CVNQIDfWqAM24Gt",
@@ -13724,7 +13788,9 @@
       "and",
       "plus",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "YioNWDJhfktvNTm3FYv7itlt",
@@ -13952,7 +14018,9 @@
       "or",
       "shl1",
       "shr1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "ZMN9FyzZSbwXGI6rZog3l4Q1",
@@ -14134,7 +14202,9 @@
     "operators": [
       "not",
       "or"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "a1jvs9HvUBCXCkcPf8IFCfTe",
@@ -14261,7 +14331,9 @@
     "operators": [
       "and",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "aUR7bbEPSxA04LAYInrAmtyx",
@@ -14485,7 +14557,9 @@
     "operators": [
       "and",
       "not"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "bSTSUd0dGhcigCA4Mz00FfW6",
@@ -14679,7 +14753,9 @@
       "and",
       "plus",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "bwuwkQGEYg9OAEradekoqjxt",
@@ -14857,7 +14933,9 @@
       "shr16",
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "cPBNm51nWhUyD4WkvWuBtyn5",
@@ -15105,7 +15183,9 @@
       "or",
       "shr16",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "czZzAAHD6PcYNTc3N1TVKRNX",
@@ -15126,7 +15206,9 @@
       "or",
       "shr1",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "d152jPNZfIpe3KHOa4A3qTrq",
@@ -15136,7 +15218,9 @@
       "or",
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 248.583
   },
   {
     "id": "d2ADNe9AMlKnnePOpSnNfHO8",
@@ -15269,7 +15353,9 @@
     "operators": [
       "plus",
       "shr1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "dI7HAwzA2ywxo1gQP24aZGYz",
@@ -15341,7 +15427,9 @@
     "operators": [
       "shr16",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "dOVln7Yyew7Hh9mW02AQW5il",
@@ -15628,7 +15716,9 @@
       "or",
       "plus",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 30.093000000000018
   },
   {
     "id": "e8YVBUqaW0cA3kdgIAZAyNO2",
@@ -16026,7 +16116,9 @@
     "operators": [
       "plus",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 39.58600000000001
   },
   {
     "id": "f42kOHi1KwGxWcBwzTNdroje",
@@ -16403,7 +16495,9 @@
       "not",
       "shr4",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 14.125999999999976
   },
   {
     "id": "g2TlPTKuVTqeLci1aTtQkuNn",
@@ -16624,7 +16718,9 @@
     "operators": [
       "not",
       "plus"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "gPQTAP9vatcA82ngng7UzMVh",
@@ -16696,7 +16792,9 @@
       "and",
       "plus",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 138.296
   },
   {
     "id": "gagcgMZFzCopjIEv8RKMOL6r",
@@ -16883,7 +16981,9 @@
       "or",
       "shl1",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "h2AmAeBZDRKWlzskUXiDuqtA",
@@ -17133,7 +17233,9 @@
     "operators": [
       "and",
       "shl1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "haUyg79QvbGKWYuN2laFK2UV",
@@ -17152,7 +17254,9 @@
     "operators": [
       "if0",
       "shr1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "hgbeITAOAGdFmcAfABZKRk4F",
@@ -17281,7 +17385,9 @@
     "operators": [
       "not",
       "plus"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "i6pVYw7koeGahaDi92nLECqv",
@@ -17596,7 +17702,9 @@
       "plus",
       "shl1",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "j0OUBRFxx3k3AE74FLlOeXAv",
@@ -18032,7 +18140,9 @@
       "and",
       "if0",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "k2uQAQXbmynDc0B6Wlu0YRLZ",
@@ -18057,7 +18167,9 @@
       "not",
       "shr1",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 123.245
   },
   {
     "id": "k5e4iMEVaWiCzxdt5D9y3c00",
@@ -18457,7 +18569,9 @@
     "operators": [
       "not",
       "plus"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "l5STcbBKbOolEsaC2dQtHI3t",
@@ -18975,7 +19089,9 @@
     "operators": [
       "or",
       "plus"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "mEYAzIBfy0uzlPNPNVlujDrf",
@@ -19190,7 +19306,9 @@
     "operators": [
       "or",
       "plus"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "mnnZEHiVt8oSXHYhai9aGNOV",
@@ -19617,7 +19735,9 @@
       "plus",
       "shr1",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 108.524
   },
   {
     "id": "oAntNStdf9X80cAQ4j5lvbRd",
@@ -19637,7 +19757,9 @@
       "or",
       "shr16",
       "xor"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "oBxcMdFaTBvCfPb6umlJDQV8",
@@ -19933,7 +20055,9 @@
     "operators": [
       "plus",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "p6eQmKvudcK7eXoRMjRmdfTI",
@@ -20214,7 +20338,9 @@
     "operators": [
       "if0",
       "shl1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "po5VsGwuLC5u6Z1HRQ8bLTO0",
@@ -20277,7 +20403,9 @@
       "or",
       "plus",
       "shl1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "pvU5JyANDAm5liAHpw6wzvtc",
@@ -20402,7 +20530,9 @@
       "and",
       "not",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "qHrQuUMrLfO96dTWB2AVApaZ",
@@ -20574,7 +20704,9 @@
       "plus",
       "shr1",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "qwU4z4zeNuSToTa6DRpgpkD6",
@@ -20596,7 +20728,9 @@
     "operators": [
       "plus",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "qyyr6nVnszISqvivHRshASEd",
@@ -21517,7 +21651,9 @@
       "not",
       "or",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "uDsKDI3Pe6pPYZaeLNwoFdRS",
@@ -21793,7 +21929,9 @@
     "operators": [
       "if0",
       "tfold"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "v2JP2PmkvykocVu9WhY7lTZa",
@@ -21829,7 +21967,9 @@
     "operators": [
       "and",
       "plus"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "vAYBnjU7fZ3uWOb9gHSZ323y",
@@ -22304,7 +22444,9 @@
       "not",
       "or",
       "shr16"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "wSvUcAYffBdAVymNkynjVamf",
@@ -23368,7 +23510,9 @@
       "shr1",
       "shr16",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "z36CedfYDBDVNdsmGV2ZAzTn",
@@ -23404,7 +23548,9 @@
     "operators": [
       "or",
       "shr4"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "z4oaILjgkglmBsqhLZ5Z8QBo",
@@ -23639,7 +23785,9 @@
       "not",
       "or",
       "shr1"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "zjybW0QyAQHzK1MNL04kXq7p",
@@ -23687,7 +23835,9 @@
     "operators": [
       "if0",
       "tfold"
-    ]
+    ],
+    "solved": true,
+    "timeLeft": 0
   },
   {
     "id": "zsZNbUYClBqcPcSr3snxwFUK",

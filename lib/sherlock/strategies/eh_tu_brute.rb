@@ -1,14 +1,33 @@
 require "benchmark"
-require "pp"
 
 module Sherlock
   module Strategies
     class EhTuBrute < Strategy
       def self.can_handle?(problem)
+        # problem["operators"].none? { |op| %w[if0 fold].include?(op) }
+
+        # problem["size"] - 2 == count_operators(*problem["operators"])
+
         size = ENV["BRUTE_FORCE_SIZE"].to_i
-        size > 0                &&
-        problem["size"] == size &&
-        !problem.include?("solved")
+        size > 0 && problem["size"] == size
+      end
+
+      def self.count_operators(*operators)
+        operators.inject(0) { |total, op|
+          total += if %w[not shl1 shr1 shr4 shr16].include?(op)
+                     1
+                   elsif %w[and or xor plus].include?(op)
+                     2
+                   elsif op == "if0"
+                     3
+                   elsif op == "fold" || op == "tfold"
+                     4
+                   elsif op == "bonus"
+                     0
+                   else
+                     fail "Unknown operator:  #{op}"
+                   end
+        }
       end
 
       def solve
@@ -47,24 +66,8 @@ module Sherlock
           extras.combination(n).reject { |mix|
             operators.any? { |op| !mix.include?(op) } ||
             mix.count("fold") > 1                     ||
-            count_operators(*mix) != max_size
+            self.class.count_operators(*mix) != max_size
           }.uniq
-        }
-      end
-
-      def count_operators(*operators)
-        operators.inject(0) { |total, op|
-          total += if %w[not shl1 shr1 shr4 shr16].include?(op)
-                     1
-                   elsif %w[and or xor plus].include?(op)
-                     2
-                   elsif op == "if0"
-                     3
-                   elsif op == "fold"
-                     4
-                   else
-                     fail "Unknown operator:  #{op}"
-                   end
         }
       end
 
@@ -134,8 +137,8 @@ module Sherlock
       def generate_all_possible_terminators(expressions)
         expressions.flat_map { |expression|
           expansions = [expression]
-          while expressions.first.include?("e")
-            expressions = expressions.flat_map { |expression|
+          while expansions.first.include?("e")
+            expansions = expansions.flat_map { |expression|
               start_fold, stop_fold = nil, nil
               if problem["operators"].include?("fold")
                 location   = expression.match(
@@ -166,7 +169,7 @@ module Sherlock
               }
             }
           end
-          expressions
+          expansions
         }.uniq
       end
 
